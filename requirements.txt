@@ -56,3 +56,6 @@ httpx
 
 # Pre-commit framework for managing git hooks
 pre-commit
+
+pydantic-settings
+
