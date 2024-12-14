@@ -2,7 +2,7 @@ from sqlalchemy import Column, String, Integer, Date, Boolean, ForeignKey, Enum,
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 import uuid
-from app.db.base_class import Base  # Base is already configured in Cookiecutter
+from portfolio.db.base_class import Base
 
 class User(Base):
     __tablename__ = "users"
