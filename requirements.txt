@@ -1,0 +1,58 @@
+# FastAPI framework for building APIs
+fastapi
+
+# ASGI server to run FastAPI applications
+uvicorn[standard]
+
+# SQLAlchemy ORM for database interactions
+sqlalchemy
+
+# PostgreSQL driver for SQLAlchemy
+psycopg2
+
+# Database migration tool
+alembic
+
+# Environment variable management
+python-dotenv
+
+# --- Development Tools ---
+
+# Code formatter to ensure consistent code style
+black
+
+# Linter to check code quality
+flake8
+
+# Import sorter to organize imports automatically
+isort
+
+# --- Notebooks ---
+
+# JupyterLab for interactive development and notebooks
+jupyterlab
+
+# Classic Jupyter Notebook interface
+notebook
+
+# Kernel for using virtual environments in Jupyter
+ipykernel
+
+# --- Testing ---
+
+# Testing framework for Python
+pytest
+
+# Asyncio support for pytest
+pytest-asyncio
+
+# Code coverage report for pytest
+pytest-cov
+
+# HTTP client for testing API endpoints
+httpx
+
+# --- Pre-commit Hooks ---
+
+# Pre-commit framework for managing git hooks
+pre-commit
