@@ -6,6 +6,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from core.config import settings
 from db.base_class import Base
+from db.models import User, Project  # Importez tous vos modèles ici
 from logging.config import fileConfig
 from sqlalchemy import engine_from_config, pool
 from alembic import context

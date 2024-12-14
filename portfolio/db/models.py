@@ -2,7 +2,7 @@ from sqlalchemy import Column, String, Integer, Date, Boolean, ForeignKey, Enum,
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 import uuid
-from portfolio.db.base_class import Base
+from db.base_class import Base
 
 class User(Base):
     __tablename__ = "users"
