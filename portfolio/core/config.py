@@ -12,7 +12,7 @@ class Settings(BaseSettings):
 
     # Configuration de l'application
     API_PREFIX: str = "/api"
-    PROJECT_NAME: str = "Portfolio"
+    PROJECT_NAME: str = "Project Manager ( Portfolio )"
     VERSION: str = "1.0.0"
     DEBUG: bool = True
 
