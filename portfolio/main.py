@@ -1,9 +1,10 @@
 from fastapi import FastAPI
 
-# Import des routeurs depuis le module routers
+# Router Imports
 from portfolio.routers.missions import router as missions_router
 from portfolio.routers.project import router as project_router
 from portfolio.routers.users import router as users_router
+# Config Imports
 from portfolio.core.config import settings
 
 

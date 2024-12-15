@@ -5,7 +5,7 @@ class Base:
     id: any
     __name__: str
 
-    # Génère automatiquement __tablename__ si non défini dans le modèle
+    # Generate __tablename__ if not defined in models
     @declared_attr
     def __tablename__(cls) -> str:
         return cls.__name__.lower()
