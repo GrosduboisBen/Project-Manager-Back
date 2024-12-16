@@ -1,36 +1,28 @@
 from pydantic import BaseModel, EmailStr
 from uuid import UUID
 from datetime import datetime
-from typing import List
+from typing import Optional, List
 
-# Schéma de base pour les utilisateurs
 class UserBase(BaseModel):
     name: str
     email: EmailStr
 
-# Schéma pour créer un utilisateur
 class UserCreate(UserBase):
     password: str
 
-# Schéma pour mettre à jour un utilisateur
 class UserUpdate(BaseModel):
-    name: str | None = None
-    email: EmailStr | None = None
-    password: str | None = None
-    active: bool | None = None
+    name: Optional[str] = None
+    email: Optional[EmailStr] = None
+    password: Optional[str] = None
+    active: Optional[bool] = None
 
-# Schéma pour renvoyer un utilisateur
 class UserResponse(UserBase):
     id: UUID
     creation_date: datetime
-    last_login_date: datetime | None
+    last_login_date: Optional[datetime]
     active: bool
-    role_id: UUID
+    role_id: Optional[UUID]
 
-    class Config:
-        orm_mode = True
-
-# Schéma pour une liste d'utilisateurs avec pagination
 class UserListResponse(BaseModel):
     total: int
     page: int
