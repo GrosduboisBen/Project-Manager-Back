@@ -2,7 +2,7 @@ from pydantic_settings import BaseSettings
 from pydantic import Field, PostgresDsn, field_validator
 
 class Settings(BaseSettings):
-    # Variables pour la base de données
+    # DB Config
     POSTGRES_USER: str
     POSTGRES_PASSWORD: str
     POSTGRES_DB: str
@@ -10,9 +10,9 @@ class Settings(BaseSettings):
     DATABASE_PORT: int = 5432
     DATABASE_URL: PostgresDsn = Field(default=None)
 
-    # Configuration de l'application
+    # App config
     API_PREFIX: str = "/api"
-    PROJECT_NAME: str = "Portfolio"
+    PROJECT_NAME: str = "Project Manager ( Portfolio )"
     VERSION: str = "1.0.0"
     DEBUG: bool = True
 
@@ -20,7 +20,7 @@ class Settings(BaseSettings):
     @classmethod
     def assemble_database_url(cls, v, values):
         """
-        Générer DATABASE_URL si elle n'est pas définie directement.
+        Generate DATABASE_URL if not correctly define
         """
         if v:
             return v
@@ -32,7 +32,5 @@ class Settings(BaseSettings):
 
 
     class Config:
-        env_file = ".env"  # Chemin vers le fichier contenant les variables d'environnement
-
-# Instanciation globale des paramètres
+        env_file = ".env"
 settings = Settings()
