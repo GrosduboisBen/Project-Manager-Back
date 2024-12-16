@@ -8,7 +8,7 @@ class Settings(BaseSettings):
     POSTGRES_DB: str
     DATABASE_HOST: str = "db"
     DATABASE_PORT: int = 5432
-    DATABASE_URL: PostgresDsn = Field(default=None)
+    DATABASE_URL: str = Field(default=None)
 
     # App config
     API_PREFIX: str = "/api"

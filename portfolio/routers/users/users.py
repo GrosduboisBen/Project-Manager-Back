@@ -1,49 +1,46 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
-from db.models.users import User
-from database import get_db
+from typing import List
+from portfolio.database import get_db
+from portfolio.crud.users import create_user, get_users_with_count, get_user, update_user, delete_user
+from portfolio.schemas.users import UserCreate, UserUpdate, UserResponse, UserListResponse
 
 router = APIRouter()
 
-# Create a new user
-@router.post("/")
-def create_user(user: User, db: Session = Depends(get_db)):
-    db.add(user)
-    db.commit()
-    db.refresh(user)
-    return user
+@router.post("/", response_model=UserResponse)
+def create(user: UserCreate, db: Session = Depends(get_db)):
+    return create_user(db, user)
 
-# Get all users
-@router.get("/")
-def get_users(db: Session = Depends(get_db)):
-    return db.query(User).all()
 
-# Get a user by ID
-@router.get("/{user_id}")
-def get_user(user_id: str, db: Session = Depends(get_db)):
-    user = db.query(User).filter(User.id == user_id).first()
+@router.get("/", response_model=UserListResponse)
+def read_users(
+    page: int = Query(1, ge=1),  # Page commence à 1
+    page_size: int = Query(10, ge=1, le=100),  # Taille de page entre 1 et 100
+    db: Session = Depends(get_db)
+):
+    skip = (page - 1) * page_size
+    return get_users_with_count(db, skip=skip, limit=page_size)
+
+
+@router.get("/{user_id}", response_model=UserResponse)
+def read_user(user_id: str, db: Session = Depends(get_db)):
+    user = get_user(db, user_id)
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
     return user
 
-# Update a user
-@router.put("/{user_id}")
-def update_user(user_id: str, user: User, db: Session = Depends(get_db)):
-    db_user = db.query(User).filter(User.id == user_id).first()
-    if not db_user:
-        raise HTTPException(status_code=404, detail="User not found")
-    for key, value in user.dict(exclude_unset=True).items():
-        setattr(db_user, key, value)
-    db.commit()
-    db.refresh(db_user)
-    return db_user
 
-# Delete a user
+@router.put("/{user_id}", response_model=UserResponse)
+def update(user_id: str, user: UserUpdate, db: Session = Depends(get_db)):
+    updated_user = update_user(db, user_id, user)
+    if not updated_user:
+        raise HTTPException(status_code=404, detail="User not found")
+    return updated_user
+
+
 @router.delete("/{user_id}")
-def delete_user(user_id: str, db: Session = Depends(get_db)):
-    user = db.query(User).filter(User.id == user_id).first()
-    if not user:
+def delete(user_id: str, db: Session = Depends(get_db)):
+    deleted_user = delete_user(db, user_id)
+    if not deleted_user:
         raise HTTPException(status_code=404, detail="User not found")
-    db.delete(user)
-    db.commit()
     return {"message": "User deleted successfully"}

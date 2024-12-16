@@ -2,7 +2,7 @@ from sqlalchemy import Column, String, DECIMAL, Date, ForeignKey, Enum, Text
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 import uuid
-from db.base_class import Base
+from portfolio.db.base_class import Base
 
 class Mission(Base):
     __tablename__ = "missions"

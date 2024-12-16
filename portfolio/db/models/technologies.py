@@ -1,7 +1,7 @@
 from sqlalchemy import Column, String, Text, ForeignKey
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
-from db.base_class import Base
+from portfolio.db.base_class import Base
 import uuid
 
 

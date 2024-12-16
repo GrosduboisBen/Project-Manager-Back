@@ -2,7 +2,7 @@ from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 import uuid
-from db.base_class import Base
+from portfolio.db.base_class import Base
 
 class Permission(Base):
     __tablename__ = "permissions"

@@ -2,7 +2,7 @@ from sqlalchemy import Column, DECIMAL, ForeignKey
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 import uuid
-from db.base_class import Base
+from portfolio.db.base_class import Base
 
 class Pricing(Base):
     __tablename__ = "pricing"
