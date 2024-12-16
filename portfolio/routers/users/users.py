@@ -18,8 +18,7 @@ def read_users(
     page_size: int = Query(10, ge=1, le=100),  # Taille de page entre 1 et 100
     db: Session = Depends(get_db)
 ):
-    skip = (page - 1) * page_size
-    return get_users_with_count(db, skip=skip, limit=page_size)
+    return get_users_with_count(db, page=page, page_size=page_size)
 
 
 @router.get("/{user_id}", response_model=UserResponse)
