@@ -7,6 +7,8 @@ from portfolio.routers.projects.projects import router as projects_router
 from portfolio.routers.missions.missions import router as missions_router
 from portfolio.routers.milestones.milestones import router as milestones_router
 from portfolio.routers.roles.roles import router as roles_router
+from portfolio.routers.permissions.permissions import router as permissions_router
+
 # Import other routers as you add them
 
 # Create the FastAPI app
@@ -22,4 +24,6 @@ app.include_router(projects_router, prefix=f"{settings.API_PREFIX}/projects", ta
 app.include_router(missions_router, prefix=f"{settings.API_PREFIX}/missions", tags=["Missions"])
 app.include_router(milestones_router, prefix=f"{settings.API_PREFIX}/milestones", tags=["Milestones"])
 app.include_router(roles_router, prefix=f"{settings.API_PREFIX}/roles", tags=["Roles"])
+app.include_router(permissions_router, prefix=f"{settings.API_PREFIX}/permissions", tags=["Permissions"])
+
 # Add additional routes as necessary
