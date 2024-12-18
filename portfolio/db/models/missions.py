@@ -16,7 +16,7 @@ class Mission(Base):
     start_date = Column(Date)
     due_date = Column(Date, nullable=False)
     estimated_delivery = Column(Date)
-    status = Column(Enum("open", "in_progress", "closed", "blocked", name="mission_statuses"), nullable=False)
+    status = Column(Enum("open", "assigned", "completed", "blocked", name="mission_statuses"), nullable=False)
     estimated_cost = Column(DECIMAL)
 
     milestone = relationship("Milestone", back_populates="missions")
