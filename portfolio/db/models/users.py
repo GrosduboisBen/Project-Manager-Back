@@ -12,7 +12,7 @@ class User(Base):
     name = Column(String, nullable=False)
     email = Column(String, unique=True, nullable=False)
     password = Column(String, nullable=False)
-    creation_date = Column(TIMESTAMP, nullable=False, default=datetime.now(timezone.utc))  # Default creation date
+    creation_date = Column(TIMESTAMP, nullable=False, default=datetime.now(timezone.utc))
     last_login_date = Column(TIMESTAMP, nullable=True)
     active = Column(Boolean, default=True)
     role_id = Column(UUID(as_uuid=True), ForeignKey("roles.id"), nullable=True)
