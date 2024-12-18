@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
-from portfolio.db.database import get_db
+from portfolio.database import get_db
 from portfolio.crud.pricing import (
     create_pricing,
     get_pricing_with_count,
