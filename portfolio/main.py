@@ -10,6 +10,8 @@ from portfolio.routers.roles.roles import router as roles_router
 from portfolio.routers.permissions.permissions import router as permissions_router
 from portfolio.routers.technologies.technologies import router as technologies_router
 from portfolio.routers.tags.tags import router as tags_router
+from portfolio.routers.pricing.pricing import router as pricing_router
+
 
 
 
@@ -31,6 +33,8 @@ app.include_router(roles_router, prefix=f"{settings.API_PREFIX}/roles", tags=["R
 app.include_router(permissions_router, prefix=f"{settings.API_PREFIX}/permissions", tags=["Permissions"])
 app.include_router(technologies_router, prefix=f"{settings.API_PREFIX}/technologies", tags=["Technologies"])
 app.include_router(tags_router, prefix=f"{settings.API_PREFIX}/tags", tags=["Tags"])
+app.include_router(pricing_router, prefix=f"{settings.API_PREFIX}/pricing", tags=["Pricing"])
+
 
 
 
