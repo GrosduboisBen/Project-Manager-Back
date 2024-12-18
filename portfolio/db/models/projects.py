@@ -10,7 +10,7 @@ class Project(Base):
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     title = Column(String, nullable=False)
     description = Column(Text, nullable=False)
-    status = Column(Enum("sent", "in_progress", "over", "canceled", name="project_statuses"), nullable=False)
+    status = Column(Enum("proposed", "in_progress", "over", "canceled", name="project_statuses"), nullable=False)
     creation_date = Column(TIMESTAMP, nullable=False)
     start_date = Column(Date)
     end_date = Column(Date)

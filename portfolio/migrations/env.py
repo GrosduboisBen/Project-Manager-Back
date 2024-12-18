@@ -2,11 +2,11 @@ import os
 import sys
 
 # Add root folder to PYTHONPATH
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 
 from portfolio.core.config import settings
 from portfolio.db.base_class import Base
-from db import *
+from portfolio.db import *
 from logging.config import fileConfig
 from sqlalchemy import engine_from_config, pool
 from alembic import context
