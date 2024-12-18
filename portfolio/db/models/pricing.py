@@ -10,5 +10,7 @@ class Pricing(Base):
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     price_per_day = Column(DECIMAL, nullable=False)
     tag_id = Column(UUID(as_uuid=True), ForeignKey("tags.id"), nullable=False)
+    user_id = Column(UUID(as_uuid=True), ForeignKey("users.id"), nullable=False)
 
     tag = relationship("Tag", back_populates="pricing")
+    user = relationship("User", back_populates="pricings")

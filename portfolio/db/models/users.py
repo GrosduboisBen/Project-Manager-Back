@@ -20,3 +20,4 @@ class User(Base):
     role = relationship("Role", back_populates="users")  # If Role has users relationship
     availability_calendar = relationship("AvailabilityCalendar", back_populates="user")
     feedbacks = relationship("UserFeedback", back_populates="user")
+    pricing = relationship("Pricing", back_populates="user")
