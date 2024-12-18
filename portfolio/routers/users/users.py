@@ -14,8 +14,8 @@ def create(user: UserCreate, db: Session = Depends(get_db)):
 
 @router.get("/", response_model=UserListResponse)
 def read_users(
-    page: int = Query(1, ge=1),  # Page commence à 1
-    page_size: int = Query(10, ge=1, le=100),  # Taille de page entre 1 et 100
+    page: int = Query(1, ge=1),
+    page_size: int = Query(10, ge=1, le=100),
     db: Session = Depends(get_db)
 ):
     return get_users_with_count(db, page=page, page_size=page_size)
