@@ -9,6 +9,8 @@ from portfolio.routers.milestones.milestones import router as milestones_router
 from portfolio.routers.roles.roles import router as roles_router
 from portfolio.routers.permissions.permissions import router as permissions_router
 from portfolio.routers.technologies.technologies import router as technologies_router
+from portfolio.routers.tags.tags import router as tags_router
+
 
 
 # Import other routers as you add them
@@ -28,6 +30,8 @@ app.include_router(milestones_router, prefix=f"{settings.API_PREFIX}/milestones"
 app.include_router(roles_router, prefix=f"{settings.API_PREFIX}/roles", tags=["Roles"])
 app.include_router(permissions_router, prefix=f"{settings.API_PREFIX}/permissions", tags=["Permissions"])
 app.include_router(technologies_router, prefix=f"{settings.API_PREFIX}/technologies", tags=["Technologies"])
+app.include_router(tags_router, prefix=f"{settings.API_PREFIX}/tags", tags=["Tags"])
+
 
 
 # Add additional routes as necessary
