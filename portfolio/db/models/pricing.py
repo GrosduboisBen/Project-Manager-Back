@@ -15,4 +15,4 @@ class Pricing(Base):
     creation_date = Column(TIMESTAMP, nullable=False, default=datetime.now(timezone.utc))
 
     tag = relationship("Tag", back_populates="pricing")
-    user = relationship("User", back_populates="pricings")
+    user = relationship("User", back_populates="pricing")
