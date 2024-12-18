@@ -3,8 +3,8 @@ from portfolio.core.config import settings
 
 # Import routers
 from portfolio.routers.users.users import router as users_router
+from portfolio.routers.projects.projects import router as projects_router
 # from portfolio.routers.roles.roles import router as roles_router
-# from portfolio.routers.projects.projects import router as projects_router
 # from portfolio.routers.missions.missions import router as missions_router
 # Import other routers as you add them
 
@@ -17,7 +17,7 @@ app = FastAPI(
 
 # Include routers
 app.include_router(users_router, prefix=f"{settings.API_PREFIX}/users", tags=["Users"])
+app.include_router(projects_router, prefix=f"{settings.API_PREFIX}/projects", tags=["Projects"])
 # app.include_router(roles_router, prefix=f"{settings.API_PREFIX}/roles", tags=["Roles"])
-# app.include_router(projects_router, prefix=f"{settings.API_PREFIX}/projects", tags=["Projects"])
 # app.include_router(missions_router, prefix=f"{settings.API_PREFIX}/missions", tags=["Missions"])
 # Add additional routes as necessary
