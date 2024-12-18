@@ -13,12 +13,6 @@ from portfolio.routers.tags.tags import router as tags_router
 from portfolio.routers.pricing.pricing import router as pricing_router
 from portfolio.routers.feedbacks.feedbacks import router as feedbacks_router
 
-
-
-
-
-# Import other routers as you add them
-
 # Create the FastAPI app
 app = FastAPI(
     title=settings.PROJECT_NAME,
@@ -37,8 +31,3 @@ app.include_router(technologies_router, prefix=f"{settings.API_PREFIX}/technolog
 app.include_router(tags_router, prefix=f"{settings.API_PREFIX}/tags", tags=["Tags"])
 app.include_router(pricing_router, prefix=f"{settings.API_PREFIX}/pricing", tags=["Pricing"])
 app.include_router(feedbacks_router, prefix=f"{settings.API_PREFIX}/feedbacks", tags=["FeedBacks"])
-
-
-
-
-# Add additional routes as necessary
