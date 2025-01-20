@@ -1,0 +1,10 @@
+{
+    "title": "Base project",
+    "description": "This is a test entity.",
+    "status": "proposed",
+    "start_date": "2025-01-20",
+    "end_date": "2025-01-20",
+    "total_price": 0,
+    "tax_rate": 0,
+    "client_id": "92223c20-8bbe-4aed-a9af-62bbb71ed442"
+  }
