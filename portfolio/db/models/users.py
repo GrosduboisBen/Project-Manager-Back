@@ -21,3 +21,5 @@ class User(Base):
     availability_calendar = relationship("AvailabilityCalendar", back_populates="user")
     feedbacks = relationship("UserFeedback", back_populates="user")
     pricing = relationship("Pricing", back_populates="user")
+    invoices = relationship("Invoice", back_populates="user")
+
