@@ -1,13 +1,13 @@
 from pydantic import BaseModel
 from uuid import UUID
 from typing import Optional
-from datetime import date
+from datetime import datetime
 
 class InvoiceInfoBase(BaseModel):
     invoice_id: UUID
     client_name: str
-    creation_date: date
-    expiry_date: date
+    creation_date: datetime
+    expiry_date: datetime
     client_address: str
     deposit_price: float
 
@@ -16,8 +16,8 @@ class InvoiceInfoCreate(InvoiceInfoBase):
 
 class InvoiceInfoUpdate(BaseModel):
     client_name: Optional[str]
-    creation_date: Optional[date]
-    expiry_date: Optional[date]
+    creation_date: Optional[datetime]
+    expiry_date: Optional[datetime]
     client_address: Optional[str]
     deposit_price: Optional[float]
 

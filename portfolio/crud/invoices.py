@@ -5,10 +5,7 @@ from datetime import datetime
 
 # Create a new invoice
 def create_invoice(db: Session, invoice: InvoiceCreate):
-    db_invoice = Invoice(
-        **invoice.model_dump(),
-        last_update=datetime.now()
-    )
+    db_invoice = Invoice(**invoice.model_dump())
     db.add(db_invoice)
     db.commit()
     db.refresh(db_invoice)

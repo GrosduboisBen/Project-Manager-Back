@@ -1,5 +1,4 @@
 from sqlalchemy import Column, String, UUID
-from sqlalchemy.orm import relationship
 from portfolio.db.base_class import Base
 import uuid
 

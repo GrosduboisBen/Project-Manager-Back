@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, UUID, ForeignKey, Date
+from sqlalchemy import Column, UUID, ForeignKey
 from sqlalchemy.orm import relationship
 from portfolio.db.base_class import Base
 import uuid

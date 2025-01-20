@@ -11,3 +11,7 @@ from portfolio.db.models.technologies import Technology
 from portfolio.db.models.pricing import Pricing
 from portfolio.db.models.calendars import AvailabilityCalendar
 from portfolio.db.models.feedbacks import UserFeedback
+from portfolio.db.models.invoices import Invoice
+from portfolio.db.models.invoices_infos import InvoiceInfo 
+from portfolio.db.models.custom_blocks import CustomBlock
+from portfolio.db.models.invoices_has_blocks import InvoiceHasCustomBlock
