@@ -10,6 +10,7 @@ class ProjectBase(BaseModel):
     start_date: Optional[date]
     end_date: Optional[date]
     total_price: Optional[float]
+    tax_rate: Optional[float]
 
 class ProjectCreate(ProjectBase):
     client_id: UUID
@@ -22,6 +23,8 @@ class ProjectUpdate(BaseModel):
     end_date: Optional[date]
     total_price: Optional[float]
     client_id: Optional[UUID]
+    tax_rate: Optional[float]
+
 
 class ProjectResponse(ProjectBase):
     id: UUID
