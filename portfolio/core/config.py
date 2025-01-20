@@ -1,5 +1,5 @@
 from pydantic_settings import BaseSettings
-from pydantic import Field, PostgresDsn, field_validator
+from pydantic import Field, field_validator
 
 class Settings(BaseSettings):
     # DB Config
@@ -8,7 +8,7 @@ class Settings(BaseSettings):
     POSTGRES_DB: str
     DATABASE_HOST: str = "db"
     DATABASE_PORT: int = 5432
-    DATABASE_URL: PostgresDsn = Field(default=None)
+    DATABASE_URL: str = Field(default=None)
 
     # App config
     API_PREFIX: str = "/api"

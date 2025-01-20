@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, ForeignKey, Text, TIMESTAMP
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 import uuid
-from db.base_class import Base
+from portfolio.db.base_class import Base
 
 class UserFeedback(Base):
     __tablename__ = "user_feedback"

@@ -2,7 +2,7 @@ from sqlalchemy import Column, Date, ForeignKey, Enum, Text
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 import uuid
-from db.base_class import Base
+from portfolio.db.base_class import Base
 
 class AvailabilityCalendar(Base):
     __tablename__ = "availability_calendar"
