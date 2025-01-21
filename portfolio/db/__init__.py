@@ -15,3 +15,4 @@ from portfolio.db.models.invoices import Invoice
 from portfolio.db.models.invoices_infos import InvoiceInfo 
 from portfolio.db.models.custom_blocks import CustomBlock
 from portfolio.db.models.invoices_has_blocks import InvoiceHasCustomBlock
+from portfolio.db.models.calendars import AvailabilityCalendar

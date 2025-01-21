@@ -9,7 +9,8 @@ class AvailabilityCalendar(Base):
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     user_id = Column(UUID(as_uuid=True), ForeignKey("users.id"), nullable=False)
-    availability_date = Column(Date, nullable=False)
+    start_date = Column(Date, nullable=False)
+    end_date = Column(Date, nullable=False)
     status = Column(Enum("available", "busy", name="availability_statuses"), nullable=False)
     note = Column(Text)
 
