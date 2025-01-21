@@ -15,7 +15,9 @@ from portfolio.routers.feedbacks.feedbacks import router as feedbacks_router
 from portfolio.routers.invoices.invoices import router as invoices_router
 from portfolio.routers.invoices_infos.invoices_infos import router as invoices_info_router
 from portfolio.routers.custom_blocks.custom_blocks import router as custom_blocks_router
-from portfolio.routers.invoices_has_blocks.invoices_has_blocks import router as invoices_has_blocks
+from portfolio.routers.invoices_has_blocks.invoices_has_blocks import router as invoices_has_blocks_router
+from portfolio.routers.calendars.calendars import router as calendars_router
+
 
 
 # Create the FastAPI app
@@ -39,5 +41,7 @@ app.include_router(feedbacks_router, prefix=f"{settings.API_PREFIX}/feedbacks", 
 app.include_router(invoices_router, prefix=f"{settings.API_PREFIX}/invoices", tags=["Invoices"])
 app.include_router(invoices_info_router, prefix=f"{settings.API_PREFIX}/invoices_infos", tags=["Invoices Infos"])
 app.include_router(custom_blocks_router, prefix=f"{settings.API_PREFIX}/custom_blocks", tags=["Custom Blocks"])
-app.include_router(invoices_has_blocks, prefix=f"{settings.API_PREFIX}/invoices_blocks", tags=["Invoices Blocks"])
+app.include_router(invoices_has_blocks_router, prefix=f"{settings.API_PREFIX}/invoices_blocks", tags=["Invoices Blocks"])
+app.include_router(calendars_router, prefix=f"{settings.API_PREFIX}/calendars", tags=["Calendars"])
+
 
