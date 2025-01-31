@@ -3,12 +3,14 @@ from sqlalchemy.orm import Session
 from portfolio.database import get_db
 from portfolio.crud.projects import (
     create_project,
-    get_projects_with_count,
+    get_projects,
     get_project,
     update_project,
     delete_project,
 )
-from portfolio.schemas.projects import ProjectCreate, ProjectUpdate, ProjectResponse, ProjectListResponse
+from portfolio.schemas.projects import ProjectCreate, ProjectUpdate, ProjectResponse, ProjectListResponse,ProjectStatusEnum
+from typing import Optional
+from datetime import date
 
 router = APIRouter()
 
@@ -21,15 +23,33 @@ def create(project: ProjectCreate, db: Session = Depends(get_db)):
 
 
 @router.get("/", response_model=ProjectListResponse)
-def read_projects(
-    page: int = Query(1, ge=1),  # Minimum page number
-    page_size: int = Query(10, ge=1, le=100),  # Maximum items per page
+def list_projects(
+    page: int = Query(1, ge=1),
+    page_size: int = Query(10, ge=1, le=100),
+    client_id: Optional[str] = None,
+    title: Optional[str] = None,
+    start_date: Optional[date] = None,
+    end_date: Optional[date] = None,
+    total_price_min: Optional[float] = None,
+    total_price_max: Optional[float] = None,
+    status: Optional[ProjectStatusEnum] = None,
     db: Session = Depends(get_db),
 ):
     """
-    Retrieve a list of projects with pagination.
+    Retrieve a list of projects with optional filters.
     """
-    return get_projects_with_count(db, page=page, page_size=page_size)
+    return get_projects(
+        db,
+        page=page,
+        page_size=page_size,
+        client_id=client_id,
+        title=title,
+        start_date=start_date,
+        end_date=end_date,
+        total_price_min=total_price_min,
+        total_price_max=total_price_max,
+        status=status,
+    )
 
 
 @router.get("/{project_id}", response_model=ProjectResponse)

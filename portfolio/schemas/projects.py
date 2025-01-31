@@ -2,11 +2,13 @@ from pydantic import BaseModel
 from uuid import UUID
 from datetime import datetime, date
 from typing import Optional
+from portfolio.db.models.projects import ProjectStatusEnum
+
 
 class ProjectBase(BaseModel):
     title: str
     description: str
-    status: str  # ENUM: "sent", "in_progress", "over", "canceled"
+    status: ProjectStatusEnum
     start_date: Optional[date]
     end_date: Optional[date]
     total_price: Optional[float]
@@ -18,7 +20,7 @@ class ProjectCreate(ProjectBase):
 class ProjectUpdate(BaseModel):
     title: Optional[str]
     description: Optional[str]
-    status: Optional[str]
+    status: Optional[ProjectStatusEnum]
     start_date: Optional[date]
     end_date: Optional[date]
     total_price: Optional[float]
