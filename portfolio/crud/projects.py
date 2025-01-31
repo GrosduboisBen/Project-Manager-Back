@@ -1,7 +1,10 @@
 from sqlalchemy.orm import Session
+from sqlalchemy import and_
 from portfolio.db.models.projects import Project
-from portfolio.schemas.projects import ProjectCreate, ProjectUpdate
+from portfolio.schemas.projects import ProjectCreate, ProjectUpdate, ProjectStatusEnum
 from datetime import datetime
+from typing import Optional
+from datetime import date
 
 # Create a new project
 def create_project(db: Session, project: ProjectCreate):
@@ -26,14 +29,41 @@ def get_project(db: Session, project_id: str):
     return db.query(Project).filter(Project.id == project_id).first()
 
 
-# Get all projects with pagination
-def get_projects_with_count(db: Session, page: int, page_size: int):
-    """
-    Retrieve a paginated list of projects and the total count.
-    """
-    skip = (page - 1) * page_size
-    total = db.query(Project).count()
-    projects = db.query(Project).offset(skip).limit(page_size).all()
+# Get projects with filtering and pagination
+def get_projects(
+    db: Session,
+    page: int,
+    page_size: int,
+    client_id: Optional[str] = None,
+    title: Optional[str] = None,
+    start_date: Optional[date] = None,
+    end_date: Optional[date] = None,
+    total_price_min: Optional[float] = None,
+    total_price_max: Optional[float] = None,
+    status: Optional[ProjectStatusEnum] = None,
+):
+    filters = []
+    
+    if client_id:
+        filters.append(Project.client_id == client_id)
+    if title:
+        filters.append(Project.title.ilike(f"%{title}%"))  # Partial match
+    if start_date:
+        filters.append(Project.start_date >= start_date)
+    if end_date:
+        filters.append(Project.end_date <= end_date)
+    if total_price_min is not None:
+        filters.append(Project.total_price >= total_price_min)
+    if total_price_max is not None:
+        filters.append(Project.total_price <= total_price_max)
+    if status:
+        filters.append(Project.status == status)
+
+    query = db.query(Project).filter(and_(*filters))
+
+    total = query.count()
+    projects = query.offset((page - 1) * page_size).limit(page_size).all()
+
     return {
         "total": total,
         "page": page,
