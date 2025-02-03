@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from portfolio.core.config import settings
 
 # Import routers
@@ -25,6 +26,19 @@ app = FastAPI(
     title=settings.PROJECT_NAME,
     version=settings.VERSION,
     debug=settings.DEBUG
+)
+
+origins = [
+    "http://localhost:4200",  # Frontend Angular
+    # Ajoute d'autres origines ici si nécessaire
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,  # Permet les requêtes des origines spécifiées
+    allow_credentials=True,
+    allow_methods=["*"],  # Autoriser toutes les méthodes (GET, POST, etc.)
+    allow_headers=["*"],  # Autoriser tous les headers
 )
 
 # Include routers
