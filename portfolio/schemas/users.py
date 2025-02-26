@@ -6,12 +6,16 @@ from typing import Optional, List
 class UserBase(BaseModel):
     name: str
     email: EmailStr
+    description: Optional[str]
+    main_job: Optional[str]
 
 class UserCreate(UserBase):
     password: str
 
 class UserUpdate(BaseModel):
     name: Optional[str] = None
+    description: Optional[str] = None
+    main_job: Optional[str]
     email: Optional[EmailStr] = None
     password: Optional[str] = None
     active: Optional[bool] = None

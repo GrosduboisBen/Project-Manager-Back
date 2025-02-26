@@ -11,6 +11,8 @@ class User(Base):
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     name = Column(String, nullable=False)
     email = Column(String, unique=True, nullable=False)
+    description = Column(String,nullable=True)
+    main_job = Column(String,nullable=True)
     password = Column(String, nullable=False)
     creation_date = Column(TIMESTAMP, nullable=False, default=datetime.now(timezone.utc))
     last_login_date = Column(TIMESTAMP, nullable=True)
