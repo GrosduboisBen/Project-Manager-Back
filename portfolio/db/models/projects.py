@@ -9,7 +9,7 @@ class ProjectStatusEnum(PyEnum):
     PROPOSED = "proposed"
     IN_PROGRESS = "in_progress"
     COMPLETED = "completed"
-    CANCELLED = "cancelled"
+    CANCELED = "canceled"
     
     def __str__(self):
         return self.value 

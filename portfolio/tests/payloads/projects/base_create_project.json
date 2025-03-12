@@ -1,4 +1,5 @@
-{
+[
+  {
     "title": "Base project",
     "description": "This is a test entity.",
     "status": "proposed",
@@ -7,4 +8,16 @@
     "total_price": 0,
     "tax_rate": 0,
     "client_id": "99aa0321-07d1-49ec-bad3-3fb633cd2729"
+  },
+  {
+    "title": "Template project",
+    "description": "This is a different entity",
+    "status": "canceled",
+    "start_date": "2025-03-20",
+    "end_date": "2025-06-20",
+    "total_price": 10000,
+    "tax_rate": 5,
+    "client_id": "99aa0321-07d1-49ec-bad3-3fb633cd2729",
+    "handler_id": "96dd0bea-32c4-4c3b-ab6c-08889e74d0a0"
   }
+]

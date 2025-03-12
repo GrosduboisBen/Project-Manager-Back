@@ -5,6 +5,7 @@ from portfolio.crud.projects import (
     create_project,
     get_projects,
     get_project,
+    get_project_by_handler,
     update_project,
     delete_project,
 )
@@ -54,7 +55,7 @@ def list_projects(
     )
 
 
-@router.get("/{project_id}", response_model=ProjectResponse)
+@router.get("/{project_id}", response_model=ProjectListResponse)
 def read_project(project_id: str, db: Session = Depends(get_db)):
     """
     Retrieve a project by ID.
@@ -64,12 +65,35 @@ def read_project(project_id: str, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Project not found")
     return project
 
-@router.get("/{handler_id}", response_model=ProjectResponse)
-def read_project(handler_id: str, db: Session = Depends(get_db)):
+@router.get("/handler/{handler_id}", response_model=ProjectListResponse)
+def read_project(
+    handler_id: str,
+    page: Optional[int] = None,
+    page_size: Optional[int] = None,
+    client_id: Optional[str] = None,
+    title: Optional[str] = None,
+    start_date: Optional[date] = None,
+    end_date: Optional[date] = None,
+    total_price_min: Optional[float] = None,
+    total_price_max: Optional[float] = None,
+    status: Optional[ProjectStatusEnum] = None,
+    db: Session = Depends(get_db)):
     """
     Retrieve a project by handler ID.
     """
-    project = get_project(db, handler_id)
+    project = get_project_by_handler(
+        db,
+        handler_id,
+        page=page,
+        page_size=page_size,
+        client_id=client_id,
+        title=title,
+        start_date=start_date,
+        end_date=end_date,
+        total_price_min=total_price_min,
+        total_price_max=total_price_max,
+        status=status
+    )
     if not project:
         raise HTTPException(status_code=404, detail="Project not found")
     return project
