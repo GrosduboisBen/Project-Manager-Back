@@ -16,6 +16,7 @@ class ProjectBase(BaseModel):
 
 class ProjectCreate(ProjectBase):
     client_id: UUID
+    handler_id: Optional[UUID]
 
 class ProjectUpdate(BaseModel):
     title: Optional[str] = None
@@ -39,9 +40,9 @@ class ProjectResponse(ProjectBase):
         orm_mode = True
 
 class ProjectListResponse(BaseModel):
-    total: int
-    page: int
-    page_size: int
+    total: Optional[int] = None
+    page: Optional[int] = None
+    page_size: Optional[int] = None
     projects: list[ProjectResponse]
 
     class Config:

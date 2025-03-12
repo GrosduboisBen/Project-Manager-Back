@@ -28,6 +28,49 @@ def get_project(db: Session, project_id: str):
     """
     return db.query(Project).filter(Project.id == project_id).first()
 
+def get_project_by_handler(
+        db: Session,
+        handler_id: str,
+        page: Optional[int] = None,
+        page_size: Optional[int] = None,
+        client_id: Optional[str] = None,
+        title: Optional[str] = None,
+        start_date: Optional[date] = None,
+        end_date: Optional[date] = None,
+        total_price_min: Optional[float] = None,
+        total_price_max: Optional[float] = None,
+        status: Optional[ProjectStatusEnum] = None
+    ):
+    """
+    Retrieve a single project by its ID.
+    """
+    filters = []
+    filters.append(Project.handler_id == handler_id)
+    
+    if client_id:
+        filters.append(Project.client_id == client_id)
+    if title:
+        filters.append(Project.title.ilike(f"%{title}%"))  # Partial match
+    if start_date:
+        filters.append(Project.start_date >= start_date)
+    if end_date:
+        filters.append(Project.end_date <= end_date)
+    if total_price_min is not None:
+        filters.append(Project.total_price >= total_price_min)
+    if total_price_max is not None:
+        filters.append(Project.total_price <= total_price_max)
+    if status:
+        filters.append(Project.status == status)
+
+    query = db.query(Project).filter(and_(*filters))
+    if page_size and page :
+        projects = query.offset((page - 1) * page_size).limit(page_size).all()
+    else:
+        projects = query.all()
+    return {
+        "projects": projects
+    }
+
 
 # Get projects with filtering and pagination
 def get_projects(
