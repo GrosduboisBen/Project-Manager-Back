@@ -35,6 +35,7 @@ def get_projects(
     page: int,
     page_size: int,
     client_id: Optional[str] = None,
+    handler_id: Optional[str] = None,
     title: Optional[str] = None,
     start_date: Optional[date] = None,
     end_date: Optional[date] = None,
@@ -46,6 +47,8 @@ def get_projects(
     
     if client_id:
         filters.append(Project.client_id == client_id)
+    if handler_id:
+        filters.append(Project.handler_id == handler_id)
     if title:
         filters.append(Project.title.ilike(f"%{title}%"))  # Partial match
     if start_date:

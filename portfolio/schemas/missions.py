@@ -19,16 +19,16 @@ class MissionCreate(MissionBase):
     pass
 
 class MissionUpdate(BaseModel):
-    title: Optional[str]
-    description: Optional[str]
-    project_id: Optional[UUID]
-    milestone_id: Optional[UUID]
-    technology_id: Optional[UUID]
-    start_date: Optional[date]
-    due_date: Optional[date]
-    estimated_delivery: Optional[date]
-    status: Optional[str]
-    estimated_cost: Optional[float]
+    title: Optional[str] = None
+    description: Optional[str] = None
+    project_id: Optional[UUID] = None
+    milestone_id: Optional[UUID] = None
+    technology_id: Optional[UUID] = None
+    start_date: Optional[date] = None
+    due_date: Optional[date] = None
+    estimated_delivery: Optional[date] = None
+    status: Optional[str] = None
+    estimated_cost: Optional[float] = None
 
 class MissionResponse(MissionBase):
     id: UUID

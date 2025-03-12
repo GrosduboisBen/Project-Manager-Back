@@ -10,7 +10,7 @@ class TagCreate(TagBase):
     pass
 
 class TagUpdate(BaseModel):
-    name: Optional[str]
+    name: Optional[str] = None
 
 class TagResponse(TagBase):
     id: UUID

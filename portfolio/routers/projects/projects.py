@@ -27,6 +27,7 @@ def list_projects(
     page: int = Query(1, ge=1),
     page_size: int = Query(10, ge=1, le=100),
     client_id: Optional[str] = None,
+    handler_id: Optional[str] = None,
     title: Optional[str] = None,
     start_date: Optional[date] = None,
     end_date: Optional[date] = None,
@@ -43,6 +44,7 @@ def list_projects(
         page=page,
         page_size=page_size,
         client_id=client_id,
+        handler_id=handler_id,
         title=title,
         start_date=start_date,
         end_date=end_date,
@@ -58,6 +60,16 @@ def read_project(project_id: str, db: Session = Depends(get_db)):
     Retrieve a project by ID.
     """
     project = get_project(db, project_id)
+    if not project:
+        raise HTTPException(status_code=404, detail="Project not found")
+    return project
+
+@router.get("/{handler_id}", response_model=ProjectResponse)
+def read_project(handler_id: str, db: Session = Depends(get_db)):
+    """
+    Retrieve a project by handler ID.
+    """
+    project = get_project(db, handler_id)
     if not project:
         raise HTTPException(status_code=404, detail="Project not found")
     return project

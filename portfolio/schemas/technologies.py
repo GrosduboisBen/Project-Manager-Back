@@ -13,10 +13,10 @@ class TechnologyCreate(TechnologyBase):
     pass
 
 class TechnologyUpdate(BaseModel):
-    name: Optional[str]
-    description: Optional[str]
-    tag_id: Optional[UUID]
-    language: Optional[str]
+    name: Optional[str] = None
+    description: Optional[str] = None
+    tag_id: Optional[UUID] = None
+    language: Optional[str] = None
 
 class TechnologyResponse(TechnologyBase):
     id: UUID

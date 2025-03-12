@@ -26,6 +26,7 @@ class Project(Base):
     client_id = Column(UUID(as_uuid=True), ForeignKey("users.id"), nullable=False)
     total_price = Column(DECIMAL)
     tax_rate = Column(DECIMAL, nullable=False, default=0.0)
+    handler_id = Column(UUID(as_uuid=True), ForeignKey("users.id"),nullable=True)
 
     invoices = relationship("Invoice", back_populates="project")
     milestones = relationship("Milestone", back_populates="project")

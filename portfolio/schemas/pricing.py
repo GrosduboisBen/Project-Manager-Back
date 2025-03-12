@@ -12,9 +12,9 @@ class PricingCreate(PricingBase):
     pass
 
 class PricingUpdate(BaseModel):
-    tag_id: Optional[UUID]
-    user_id: Optional[UUID]  # New field
-    price_per_day: Optional[float]
+    tag_id: Optional[UUID] = None
+    user_id: Optional[UUID] = None
+    price_per_day: Optional[float] = None
 
 class PricingResponse(PricingBase):
     id: UUID
