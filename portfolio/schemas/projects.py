@@ -18,20 +18,22 @@ class ProjectCreate(ProjectBase):
     client_id: UUID
 
 class ProjectUpdate(BaseModel):
-    title: Optional[str]
-    description: Optional[str]
-    status: Optional[ProjectStatusEnum]
-    start_date: Optional[date]
-    end_date: Optional[date]
-    total_price: Optional[float]
-    client_id: Optional[UUID]
-    tax_rate: Optional[float]
+    title: Optional[str] = None
+    description: Optional[str] = None
+    status: Optional[ProjectStatusEnum] = None
+    start_date: Optional[date] = None
+    end_date: Optional[date] = None
+    total_price: Optional[float] = None
+    client_id: Optional[UUID] = None
+    handler_id: Optional[UUID] = None
+    tax_rate: Optional[float] = None
 
 
 class ProjectResponse(ProjectBase):
     id: UUID
     creation_date: datetime
     client_id: UUID
+    handler_id: Optional[UUID]
 
     class Config:
         orm_mode = True

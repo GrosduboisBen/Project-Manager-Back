@@ -12,8 +12,8 @@ class CustomBlockCreate(CustomBlockBase):
     pass
 
 class CustomBlockUpdate(BaseModel):
-    title: Optional[str]
-    content: Optional[str]
+    title: Optional[str] = None
+    content: Optional[str] = None
 
 class CustomBlockResponse(CustomBlockBase):
     id: UUID

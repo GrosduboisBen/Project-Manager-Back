@@ -14,11 +14,11 @@ class AvailabilityCalendarCreate(AvailabilityCalendarBase):
     pass
 
 class AvailabilityCalendarUpdate(BaseModel):
-    user_id: Optional[UUID]
-    start_date: Optional[date]
-    end_date: Optional[date]
-    status: Optional[str]
-    note: Optional[str]
+    user_id: Optional[UUID]=None
+    start_date: Optional[date]=None
+    end_date: Optional[date]=None
+    status: Optional[str]=None
+    note: Optional[str]=None
 
 class AvailabilityCalendarResponse(AvailabilityCalendarBase):
     id: UUID

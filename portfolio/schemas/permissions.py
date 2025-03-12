@@ -12,9 +12,9 @@ class PermissionCreate(PermissionBase):
     pass
 
 class PermissionUpdate(BaseModel):
-    role_id: Optional[UUID]
-    name: Optional[str]
-    description: Optional[str]
+    role_id: Optional[UUID] = None
+    name: Optional[str] = None
+    description: Optional[str] = None
 
 class PermissionResponse(PermissionBase):
     id: UUID

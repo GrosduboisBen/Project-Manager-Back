@@ -14,11 +14,11 @@ class InvoiceCreate(InvoiceBase):
     pass
 
 class InvoiceUpdate(BaseModel):
-    reference: Optional[str]
-    user_id: Optional[UUID]
-    project_id: Optional[UUID]
-    validation_status: Optional[str]
-    updated_at: Optional[date]
+    reference: Optional[str] = None
+    user_id: Optional[UUID] = None
+    project_id: Optional[UUID] = None
+    validation_status: Optional[str] = None
+    updated_at: Optional[date] = None
 
 class InvoiceResponse(InvoiceBase):
     id: UUID

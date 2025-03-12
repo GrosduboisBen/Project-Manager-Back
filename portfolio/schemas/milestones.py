@@ -12,9 +12,9 @@ class MilestoneCreate(MilestoneBase):
     pass
 
 class MilestoneUpdate(BaseModel):
-    title: Optional[str]
-    description: Optional[str]
-    project_id: Optional[UUID]
+    title: Optional[str] = None
+    description: Optional[str] = None
+    project_id: Optional[UUID] = None
 
 class MilestoneResponse(MilestoneBase):
     id: UUID

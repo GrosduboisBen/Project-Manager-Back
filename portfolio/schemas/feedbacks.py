@@ -13,10 +13,10 @@ class FeedbackCreate(FeedbackBase):
     pass
 
 class FeedbackUpdate(BaseModel):
-    user_id: Optional[UUID]
-    project_id: Optional[UUID]
-    feedback: Optional[str]
-    rating: Optional[int]
+    user_id: Optional[UUID] = None
+    project_id: Optional[UUID] = None
+    feedback: Optional[str] = None
+    rating: Optional[int] = None
 
 class FeedbackResponse(FeedbackBase):
     id: UUID

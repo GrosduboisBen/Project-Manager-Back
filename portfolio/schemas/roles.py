@@ -11,8 +11,8 @@ class RoleCreate(RoleBase):
     pass
 
 class RoleUpdate(BaseModel):
-    name: Optional[str]
-    description: Optional[str]
+    name: Optional[str] = None
+    description: Optional[str] = None
 
 class RoleResponse(RoleBase):
     id: UUID

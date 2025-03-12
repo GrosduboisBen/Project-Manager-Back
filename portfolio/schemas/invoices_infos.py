@@ -15,11 +15,11 @@ class InvoiceInfoCreate(InvoiceInfoBase):
     pass
 
 class InvoiceInfoUpdate(BaseModel):
-    client_name: Optional[str]
-    creation_date: Optional[datetime]
-    expiry_date: Optional[datetime]
-    client_address: Optional[str]
-    deposit_price: Optional[float]
+    client_name: Optional[str] = None
+    creation_date: Optional[datetime] = None
+    expiry_date: Optional[datetime] = None
+    client_address: Optional[str] = None
+    deposit_price: Optional[float] = None
 
 class InvoiceInfoResponse(InvoiceInfoBase):
     id: UUID
