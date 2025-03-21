@@ -1,6 +1,8 @@
 from sqlalchemy.orm import Session
 from portfolio.db.models.feedbacks import UserFeedback
-from portfolio.schemas.feedbacks import FeedbackCreate, FeedbackUpdate
+from portfolio.schemas.feedbacks import FeedbackCreate, FeedbackUpdate, FeedBackCustomResponse
+from portfolio.db.models.users import User
+from portfolio.db.models.projects import Project
 from datetime import datetime
 
 # Create a new feedback
@@ -24,6 +26,34 @@ def get_feedback(db: Session, feedback_id: str):
     Retrieve a single feedback by its ID.
     """
     return db.query(UserFeedback).filter(UserFeedback.id == feedback_id).first()
+
+def get_user_feedbacks(db: Session, handler_id: str):
+    """
+    Retrieve custom feedbacks see `FeedBackCustomResponse`.
+    """
+    feedback_list: list[FeedBackCustomResponse] = []
+    projects = db.query(Project).filter(Project.handler_id == handler_id).all()
+    if projects.__len__() > 0:
+        for project in projects:
+            project_feedback = db.query(UserFeedback).filter(UserFeedback.project_id == project.id).first()
+            if project_feedback is not None:
+                feedback_user = db.query(User).filter(User.id == project_feedback.user_id).first()
+                feedback_list.append(
+                    {
+                        'id':project_feedback.id,
+                        'creation_date':project_feedback.creation_date,
+                        'handler_id':handler_id,
+                        'user_name':feedback_user.name,
+                        'project_name':project.title,
+                        'user_id':project_feedback.user_id,
+                        'project_id':project.id,
+                        'feedback':project_feedback.feedback,
+                        'rating':project_feedback.rating,
+                    }
+                )
+            else:
+                continue 
+    return feedback_list
 
 
 # Get all feedbacks with pagination
