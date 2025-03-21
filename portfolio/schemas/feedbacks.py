@@ -33,3 +33,8 @@ class FeedbackListResponse(BaseModel):
 
     class Config:
         orm_mode = True
+class FeedBackCustomResponse(FeedbackResponse):
+    handler_id: UUID
+    user_name: str
+    project_name:str
+

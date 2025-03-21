@@ -7,8 +7,9 @@ from portfolio.crud.feedbacks import (
     get_feedback,
     update_feedback,
     delete_feedback,
+    get_user_feedbacks
 )
-from portfolio.schemas.feedbacks import FeedbackCreate, FeedbackUpdate, FeedbackResponse, FeedbackListResponse
+from portfolio.schemas.feedbacks import FeedbackCreate, FeedbackUpdate, FeedbackResponse, FeedbackListResponse,FeedBackCustomResponse
 
 router = APIRouter()
 
@@ -41,6 +42,16 @@ def read_feedback(feedback_id: str, db: Session = Depends(get_db)):
     if not feedback:
         raise HTTPException(status_code=404, detail="Feedback not found")
     return feedback
+
+@router.get("/handler/{handler_id}", response_model=list[FeedBackCustomResponse])
+def read_feedbacks(handler_id: str, db: Session = Depends(get_db)):
+    """
+    Retrieve all feedbacks for a given user by its ID.
+    """
+    feedbacks = get_user_feedbacks(db, handler_id)
+    if not feedbacks:
+        raise HTTPException(status_code=404, detail="Feedback not found")
+    return feedbacks
 
 
 @router.put("/{feedback_id}", response_model=FeedbackResponse)
