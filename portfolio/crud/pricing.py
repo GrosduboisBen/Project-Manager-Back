@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Session
 from portfolio.db.models.pricing import Pricing
+from portfolio.db.models.tags import Tag
 from portfolio.schemas.pricing import PricingCreate, PricingUpdate
 from datetime import datetime
 
@@ -21,6 +22,31 @@ def get_pricing(db: Session, pricing_id: str):
     Retrieve a single pricing entry by its ID.
     """
     return db.query(Pricing).filter(Pricing.id == pricing_id).first()
+
+# Get an user custom pricing informations by user ID
+def get_user_pricing(db: Session, user_id: str):
+    """
+    Retrieve a list of pricing informations.
+    """
+    # Full return list, according to UserPricing Model.
+    custom_list = []
+
+    # User pricing full list.
+    user_pricing_list = db.query(Pricing).filter(Pricing.user_id == user_id).all()
+    
+    if user_pricing_list.__len__() > 0:
+        for pricing in user_pricing_list:
+            full_tag = db.query(Tag).filter(Tag.id == pricing.tag_id).first()
+            custom_list.append(
+                {
+                    'user_id': user_id,
+                    'tag_id': pricing.tag_id,
+                    'tag_name': full_tag.name,
+                    'price_per_day': pricing.price_per_day
+                }
+            )
+    return custom_list
+
 
 
 # Get all pricing entries with pagination

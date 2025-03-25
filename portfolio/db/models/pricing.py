@@ -5,6 +5,7 @@ import uuid
 from portfolio.db.base_class import Base
 from datetime import datetime,timezone
 
+# Add a security to avoid doublon of  user_id <=> tag_id pair of keys.
 class Pricing(Base):
     __tablename__ = "pricing"
 
