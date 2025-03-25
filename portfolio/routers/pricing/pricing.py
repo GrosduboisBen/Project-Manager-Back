@@ -5,10 +5,11 @@ from portfolio.crud.pricing import (
     create_pricing,
     get_pricing_with_count,
     get_pricing,
+    get_user_pricing,
     update_pricing,
     delete_pricing,
 )
-from portfolio.schemas.pricing import PricingCreate, PricingUpdate, PricingResponse, PricingListResponse
+from portfolio.schemas.pricing import PricingCreate, PricingUpdate, PricingResponse, PricingListResponse,UserPricing
 
 router = APIRouter()
 
@@ -38,6 +39,16 @@ def read_pricing_entry(pricing_id: str, db: Session = Depends(get_db)):
     Retrieve a pricing entry by ID.
     """
     pricing = get_pricing(db, pricing_id)
+    if not pricing:
+        raise HTTPException(status_code=404, detail="Pricing entry not found")
+    return pricing
+
+@router.get("/user/{user_id}", response_model=list[UserPricing])
+def read_user_pricing(user_id: str, db: Session = Depends(get_db)):
+    """
+    Retrieve a list of pricing informations by user ID.
+    """
+    pricing = get_user_pricing(db, user_id)
     if not pricing:
         raise HTTPException(status_code=404, detail="Pricing entry not found")
     return pricing
